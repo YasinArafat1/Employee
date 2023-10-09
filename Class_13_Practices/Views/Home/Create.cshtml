@@ -1,0 +1,68 @@
+﻿@model Class_13_Practices.Models.Employee
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<div class="card m-2">
+    <div class="card-header">
+        <h4 class="card-title">Employee List</h4>
+        <h6 class="card-subtitle d-flex justify-content-between">Create Employee</h6>
+
+
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Create", "Home", FormMethod.Post))
+        {
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Name, new { @class = "col-form-label col-2" })
+
+                <div class="col-8">
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                </div>
+                <div class="col-2">
+                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Grade, new { @class = "col-form-label col-2" })
+
+                <div class="col-8">
+                    @Html.EnumDropDownListFor(x => x.Grade, "--Select--", new { @class = "form-select" })
+                </div>
+                <div class="col-2">
+                    @Html.ValidationMessageFor(x => x.Grade, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Department, new { @class = "col-form-label col-2" })
+
+                <div class="col-8">
+                    @Html.DropDownListFor(x => x.Department, ViewBag.deptList as IEnumerable<SelectListItem>,new { @class = "form-select" })
+                </div>
+                <div class="col-2">
+                    @Html.ValidationMessageFor(x => x.Department, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-10 offset-2">
+                    <button class="btn btn-outline-primary btn-sm" type="submit">
+                          Save
+                    <i class="fa fa-save"></i></button>
+                </div>
+
+            </div>
+
+        }
+    </div>
+    <div class="card-footer">
+        <a href="@Url.Action("Index","Home")" class="btn btn-primary" style="text-decoration:none;"><i class="fa fa-arrow-circle-left"></i>Back</a>
+    </div>
+</div>
